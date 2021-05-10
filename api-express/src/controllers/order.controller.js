@@ -15,22 +15,18 @@ orderController.getOrders = async (req,res) => {
 orderController.generateOrder = async (req,res) => {
     const newOrder = new order(req.body);
     await newOrder.save();
-    res.json({ok: true, result: 1})
+    res.json({ok: true, result: 1});
 };
 
 orderController.changeOrderState = async (req,res) => {
-    await order.update({_id:req.params.id},{state: req.params.newState});
+    await order.updateOne({_id:req.params.id},{state: req.params.newState});
     res.json({ok:true, result: 1});
 };
 
 orderController.updateOrder = async (req,res) => {
-    const order = new order(req.body);
-    await order.update({
-        _id:req.params.id
-    },{
-        $set: 
-            req.body
-         })
+    const newOrder = new order(req.body);
+    //delete newOrder.id;
+    await order.updateOne({_id:req.params.id}, {clientId:newOrder.clientId, productId:newOrder.productId, quantity:newOrder.quantity, orderNumber:newOrder.orderNumber, state:newOrder.state} );
     res.json({ok: true, result:1})
 }
 

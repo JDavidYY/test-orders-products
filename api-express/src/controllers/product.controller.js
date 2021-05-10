@@ -10,7 +10,7 @@ productController.getProduct = async (req,res) => {
 
 productController.getProducts = async (req,res) => {
     const products = await product.find();
-    res.json(products);
+    res.json({ok:true, result: {products}});
 };
 
 productController.saveProduct = async (req,res) => {

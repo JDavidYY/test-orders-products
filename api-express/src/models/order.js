@@ -11,5 +11,5 @@ const orderSchema = new Schema({
     versionKey: false
 });
 
-module.exports = orderSchema;
+module.exports = model('Order', orderSchema);
 

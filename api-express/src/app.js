@@ -20,7 +20,7 @@ app.use(express.urlencoded({extended:false}));
 app.use(require('./routes/security.routes'));
 app.use(require('./routes/user.routes'));
 app.use(require('./routes/product.routes'));
-//app.use(require('./routes/order.routes'));
+app.use(require('./routes/order.routes'));
 
 
 module.exports = app;
